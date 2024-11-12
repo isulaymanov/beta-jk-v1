@@ -17,4 +17,14 @@ public class UserModelDTO {
     private String middleName;
     private String username;
     private String role;
+
+//    public UserModelDTO(int id, String name, String lastName, String middleName, String username, String role) {
+//        this.id = id;
+//        this.name = name;
+//        this.lastName = lastName;
+//        this.middleName = middleName;
+//        this.username = username;
+//        this.role = role;
+//    }
+
 }

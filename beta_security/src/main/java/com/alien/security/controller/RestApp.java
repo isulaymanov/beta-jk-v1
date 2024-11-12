@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alien.security.dto.UserModelDTO;
+import com.alien.security.jwt.CustomUserDetailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,9 @@ public class RestApp {
 	 
 	@Autowired 
 	private RefreshTokenService refreshTokenService;
+
+	@Autowired
+	private CustomUserDetailService customUserDetailService;
 	
 	
 	@GetMapping("/user")
@@ -82,9 +87,22 @@ public class RestApp {
 		return ResponseEntity.status(HttpStatus.OK).body(userModel);
 	}
 	
+//	@GetMapping("/currentuser")
+//	public String getLoggedUer(Principal principal){
+//		return principal.getName();
+//	}
+
 	@GetMapping("/currentuser")
-	public String getLoggedUer(Principal principal){		
-		return principal.getName();
+	public UserModelDTO getLoggedUer(Principal principal){
+		UserModel user = (UserModel) customUserDetailService.loadUserByUsername(principal.getName());
+		return new UserModelDTO(
+				user.getId(),
+				user.getName(),
+				user.getLastName(),
+				user.getMiddleName(),
+				user.getUsername(),
+				user.getRole()
+		);
 	}
 	
 	

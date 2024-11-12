@@ -12,11 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
-
 @Getter
 @Setter
 @NoArgsConstructor
